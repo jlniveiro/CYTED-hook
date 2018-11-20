@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="es.grupoica.cyted.bbdd.mapper.ICAFlujoRolMapper">
+
+	<resultMap id="ICAFlujoRol"  type="es.grupoica.cyted.bbdd.model.ICAFlujoRol">
+	  <result property="idFlujo" column="IdFlujo" />
+	  <result property="idRolDestino" column="IdRolDestino" />
+	  <result property="idAnuncio" column="IdAnuncio" />
+	  <result property="idTarea" column="idTarea" />
+	  <result property="condicion" column="condicion" />
+	</resultMap>
+
+
+	<select id="obtenerRolesFlujo" resultMap="ICAFlujoRol" parameterType="Integer">
+		SELECT IdFlujo, IdRolDestino, IdAnuncio, idTarea, condicion  FROM ICA_FlujoRol
+		WHERE IdFlujo = #{idFlujo}
+	</select>
+
+
+
+</mapper>

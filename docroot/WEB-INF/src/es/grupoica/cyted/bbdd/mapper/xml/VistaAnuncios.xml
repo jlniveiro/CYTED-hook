@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.grupoica.cyted.bbdd.mapper.VistaAnunciosMapper">
+
+	<resultMap id="VistaAnuncios"  type="es.grupoica.cyted.bbdd.model.VistaAnuncios">
+	  <result property="idAnuncio" column="idAnuncio" />
+	  <result property="Titulo" column="Titulo" />
+	  <result property="Contenido" column="Contenido" />
+	</resultMap>
+
+
+
+	<select id="obtenerAnuncio" resultMap="VistaAnuncios" parameterType="Integer">
+		SELECT IdAnuncio, Titulo, Contenido FROM vwAnuncios
+		WHERE IdAnuncio = #{idAnuncio}
+	</select>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.grupoica.cyted.bbdd.mapper.ICATareasMapper">
+
+	<resultMap id="ICATarea"  type="es.grupoica.cyted.bbdd.model.ICATarea">
+	  <result property="idTarea" column="idTarea" />
+	  <result property="descripcion" column="Descripcion" />
+	  <result property="personaAsignada" column="personaAsignada" />
+	  <result property="prioridad" column="prioridad" />
+	  <result property="fechaFinalizacion" column="fechaFinalizacion" />
+	</resultMap>
+
+	<select id="obtenerTarea" resultMap="ICATarea" parameterType="Integer">
+		SELECT idTarea, Descripcion, personaAsignada, prioridad, fechaFinalizacion  FROM ICA_Tareas
+		WHERE idTarea = #{idTarea}
+	</select>
+
+
+	<!--
+	<select id="selectLineasForArea" resultMap="AreaTematicaConLineas" parameterType="long">
+	  SELECT
+	  	A.idArea, A.nombreArea, A.orden,
+	  	L.idLinea, L.nombre, L.anyo as anio, L.estado,
+	  	L.orden, L. transversal
+	  FROM AreasTematicas A
+	  LEFT OUTER JOIN LineasInvestigacion L on A.idArea = L.idArea
+	  where A.idArea = #{idArea}
+	</select>
+	 -->
+
+</mapper>

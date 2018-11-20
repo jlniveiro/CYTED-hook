@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.grupoica.cyted.bbdd.mapper.VwUsuariosCytedMapper">
+
+	<resultMap id="VwUsuariosCyted"  type="es.grupoica.cyted.bbdd.model.VwUsuariosCyted">
+	  <result property="entryId" column="entryId" />
+	  <result property="nombre" column="nombre" />
+	  <result property="apellidos" column="apellidos" />
+	  <result property="Email" column="Email" />
+	  <result property="idUsuario" column="idUsuario" />
+	  <result property="institucion" column="institucion" />
+	  <result property="tipoUsuario" column="tipoUsuario" />
+	  <result property="nacionalidad" column="nacionalidad" />
+	  <result property="nombreRol" column="nombreRol" />
+	</resultMap>
+
+	<select id="obtenerUsuarioById" resultMap="VwUsuariosCyted" parameterType="long">
+		SELECT entryId, nombre, apellidos, Email, idUsuario, institucion, tipoUsuario, nacionalidad, nombreRol  FROM vwUsuariosCYTED
+		WHERE idUsuario = #{idUsuario}
+	</select>
+	
+	
+</mapper>

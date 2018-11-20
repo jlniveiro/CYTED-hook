@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Appenders>
+
+		<!-- Console Appender -->
+
+		<Console name="console" target="SYSTEM_OUT">
+	 		 <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+
+		<!-- File Appender -->
+
+		<File name="fileLogger" fileName="../logs/cytedHook.log">
+	  		<PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="es.grupoica.cyted" level="debug" additivity="true">
+			<appender-ref ref="fileLogger" level="debug" />
+		</Logger>
+		<Logger name="java.sql" level="debug" additivity="false">
+    		<appender-ref ref="console" />
+		</Logger>
+		<Root level="debug" additivity="false">
+			<appender-ref ref="console" />
+		</Root>
+		<Root level="error">
+	  		<AppenderRef ref="console" />
+	  		<AppenderRef ref="fileLogger" />
+		</Root>
+	</Loggers>
+	
+</Configuration>

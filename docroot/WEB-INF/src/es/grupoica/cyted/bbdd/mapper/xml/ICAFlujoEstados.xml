@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.grupoica.cyted.bbdd.mapper.ICAFlujoEstadosMapper">
+
+	<resultMap id="ICAFlujoEstados"  type="es.grupoica.cyted.bbdd.model.ICAFlujoEstados">
+	  <result property="idFlujo" column="idFlujo" />
+	  <result property="IdEstructura" column="IdEstructura" />
+	  <result property="idEstadoOrigen" column="idEstadoOrigen" />
+	  <result property="estadoOrigen" column="estadoOrigen" />
+	  <result property="idEstadoDestino" column="idEstadoDestino" />
+	  <result property="estadoDestino" column="estadoDestino" />
+	  <result property="condicion" column="condicion" />
+	  <result property="urlOrigen" column="urlOrigen" />
+	</resultMap>
+
+
+
+	<!--
+	<resultMap id="AreaTematicaConLineas"  type="es.grupoica.cyted.migracion.model.AreaTematica">
+	  <result property="idArea" column="IDAREA" />
+	  <result property="nombreArea" column="NOMBREAREA" />
+	  <result property="orden" column="ORDEN" />
+	  <collection property="lineasInvestigacion" ofType="es.grupoica.cyted.migracion.model.LineaInvestigacion" resultMap="LineaInvestigacionResult" column="idArea" />
+	</resultMap>
+
+
+	<resultMap id="LineaInvestigacionResult" type="es.grupoica.cyted.migracion.model.LineaInvestigacion">
+	  <id property="idLinea" column="IDLINEA" />
+	  <result property="nombre" column="NOMBRE" />
+	  <result property="anio" column="ANIO" />
+	  <result property="estado" column="ESTADO" />
+	  <result property="orden" column="ORDEN" />
+	  <result property="transversal" column="TRANSVERSAL" />
+	</resultMap>
+	 -->
+
+
+	<select id="obtenerFlujosEstructura" resultMap="ICAFlujoEstados" parameterType="long">
+		SELECT idFlujo, IdEstructura, idEstadoOrigen, estadoOrigen, idEstadoDestino, estadoDestino, condicion, urlOrigen  FROM ICA_FlujoEstados
+		WHERE IdEstructura = #{IdEstructura}
+	</select>
+
+	 <select id="obtenerFlujosEstadoActual" resultMap="ICAFlujoEstados" parameterType="es.grupoica.cyted.bbdd.model.ICAFlujoEstados">
+		SELECT idFlujo, IdEstructura, idEstadoOrigen, estadoOrigen, idEstadoDestino, estadoDestino, condicion, urlOrigen  FROM ICA_FlujoEstados
+		WHERE IdEstructura = #{IdEstructura}
+		AND idEstadoOrigen = #{idEstadoOrigen}
+	</select>
+
+	<!--
+	<select id="selectLineasForArea" resultMap="AreaTematicaConLineas" parameterType="long">
+	  SELECT
+	  	A.idArea, A.nombreArea, A.orden,
+	  	L.idLinea, L.nombre, L.anyo as anio, L.estado,
+	  	L.orden, L. transversal
+	  FROM AreasTematicas A
+	  LEFT OUTER JOIN LineasInvestigacion L on A.idArea = L.idArea
+	  where A.idArea = #{idArea}
+	</select>
+	 -->
+
+</mapper>

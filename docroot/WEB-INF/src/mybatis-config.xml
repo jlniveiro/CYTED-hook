@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+
+				<!-- Máquina virtual Desarrollo (Test)  -->
+				 <!-- 
+					 <property name="url" value="jdbc:sqlserver://192.168.119.185:1433;databaseName=CYTED; catalogName=CYTED" />
+					 <property name="username" value="cytedlf" />
+					 <property name="password" value="sqlserver" />
+			     -->
+                  
+				<!-- Máquina virtual Test Cliente (Pruebas) -->
+
+				<!-- <property name="url" value="jdbc:sqlserver://192.168.235.2:1433;databaseName=CYTED; catalogName=CYTED" />
+					 <property name="username" value="cytedlf" />
+					 <property name="password" value="sqlserver" />
+				-->
+
+				<!--  Local ICA -->
+		         
+				<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=CYTED; catalogName=CYTED" />
+				<property name="username" value="cyted" />
+				<property name="password" value="sqlserver" />
+				
+				 
+				<!-- <property name="password" value="SQLserver16" />  -->
+
+				<!-- 
+				<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=CYTED_GENERAL; catalogName=CYTED_GENERAL" />
+				<property name="username" value="sa" />
+				<property name="password" value="sqlserver" />
+				-->
+
+				<!-- CONNECTION POOLING PROPERTIES -->
+        		<property name="poolMaximumActiveConnections" value="10" />
+        		<property name="poolMaximumIdleConnections" value="5" />
+        		<property name="poolMaximumCheckoutTime" value="10000" />
+        		<property name="poolTimeToWait" value="15000" /> 
+        		<property name="poolPingEnabled" value="false" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+	 	 <mapper resource="es/grupoica/cyted/bbdd/mapper/xml/ICAFlujoEstados.xml" />
+		 <mapper resource="es/grupoica/cyted/bbdd/mapper/xml/ICAFlujoRol.xml" />
+		 <mapper resource="es/grupoica/cyted/bbdd/mapper/xml/ICAAnuncios.xml" />
+		 <mapper resource="es/grupoica/cyted/bbdd/mapper/xml/VistaAnuncios.xml" />
+		 <mapper resource="es/grupoica/cyted/bbdd/mapper/xml/ICATarea.xml" />
+		 <mapper resource="es/grupoica/cyted/bbdd/mapper/xml/AreasTematicas.xml" />
+		 <mapper resource="es/grupoica/cyted/bbdd/mapper/xml/VwUsuariosCyted.xml" />
+	</mappers>
+</configuration>

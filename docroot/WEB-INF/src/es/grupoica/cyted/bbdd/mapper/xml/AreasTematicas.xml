@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="es.grupoica.cyted.bbdd.mapper.AreaTematicaMapper">
+
+	<resultMap id="AreaTematica"  type="es.grupoica.cyted.bbdd.model.AreaTematica">
+	  <result property="idArea" column="IDAREA" />
+	  <result property="nombreArea" column="NOMBREAREA" />
+	  <result property="orden" column="ORDEN" />
+	</resultMap>
+
+	<resultMap id="AreaTematicaConLineas"  type="es.grupoica.cyted.bbdd.model.AreaTematica">
+	  <result property="idArea" column="IDAREA" />
+	  <result property="nombreArea" column="NOMBREAREA" />
+	  <result property="orden" column="ORDEN" />
+	  <collection property="lineasInvestigacion" ofType="es.grupoica.cyted.bbdd.model.LineaInvestigacion" resultMap="LineaInvestigacionResult" column="idArea" />
+	</resultMap>
+
+
+	<resultMap id="LineaInvestigacionResult" type="es.grupoica.cyted.bbdd.model.LineaInvestigacion">
+	  <id property="idLinea" column="IDLINEA" />
+	  <result property="nombre" column="NOMBRE" />
+	  <result property="anio" column="ANIO" />
+	  <result property="estado" column="ESTADO" />
+	  <result property="orden" column="ORDEN" />
+	</resultMap>
+
+
+
+	<select id="obtenerAreas" resultMap="AreaTematica">
+		SELECT IdArea, nombreArea, orden FROM AreasTematicas
+	</select>
+
+	<select id="obtenerArea" resultMap="AreaTematica" parameterType="integer">
+		SELECT IdArea, nombreArea, orden FROM AreasTematicas  WHERE IdArea = #{idArea}
+	</select>
+
+	<select id="selectLineasForArea" resultMap="AreaTematicaConLineas" parameterType="integer">
+	  SELECT
+	  	A.idArea, A.nombreArea, A.orden,
+	  	L.idLinea, L.nombre, L.anyo as anio, L.estado,
+	  	L.orden
+	  FROM AreasTematicas A
+	  LEFT OUTER JOIN LineasInvestigacion L on A.idArea = L.idArea
+	  where A.idArea = #{idArea}
+	</select>
+
+</mapper>
